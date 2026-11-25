@@ -26,8 +26,10 @@ outside Git and are streamed from an external CDN (Cloudflare R2) at runtime.
 │   │   ├── viewer.css
 │   │   ├── manifest.json  # 4,810 asset records (metadata only, ~3 MB)
 │   │   └── vendor/model-viewer.min.js
+│   ├── setup.sh            # One-command local setup (fetch all assets + serve)
 │   ├── scripts/
 │   │   ├── sync.mjs        # Sync viewer source from the local asset library
+│   │   ├── fetch-assets.mjs # Download all assets from the CDN into the library
 │   │   ├── build.mjs       # Build dist/ and verify no binaries are included
 │   │   ├── dev.mjs         # Local server with /assets mapped to the library
 │   │   └── upload-r2.sh    # Upload asset library to Cloudflare R2
@@ -39,18 +41,30 @@ outside Git and are streamed from an external CDN (Cloudflare R2) at runtime.
 └── .gitignore
 ```
 
-## Quick start
+## One-command local setup (everything on your machine)
+
+```bash
+cd web
+cp .env.example .env      # set ASSETS_BASE to the public CDN URL
+./setup.sh
+```
+
+`setup.sh` downloads **all 4,810 models, glTF textures/buffers and previews**
+into `3D_Asset_Library/`, generates `manifest.local.json`, rebuilds the gallery
+with `ASSETS_BASE=/assets`, and starts it at `http://localhost:4173`.
+
+After the first run the gallery works fully offline on that machine.
+
+## Manual build
 
 ```bash
 cd web
 npm install
-cp .env.example .env
 npm run build       # outputs web/dist (about 4.15 MB)
 npm run dev         # http://localhost:4173
 ```
 
-`npm run dev` maps `/assets/*` to `../3D_Asset_Library/*`, so the gallery works
-locally without uploading anything.
+`npm run dev` maps `/assets/*` to `../3D_Asset_Library/*`.
 
 ## Production deployment
 

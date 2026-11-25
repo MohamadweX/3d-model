@@ -30,9 +30,11 @@ if (!fs.existsSync(path.join(pub, "index.html"))) {
 
 fs.rmSync(dist, { recursive: true, force: true });
 fs.cpSync(pub, dist, { recursive: true });
+const manifestUrl = (process.env.MANIFEST_URL || "manifest.json").trim();
 fs.writeFileSync(
   path.join(dist, "config.js"),
-  "window.ASSETS_BASE = " + JSON.stringify(base) + ";\n"
+  "window.ASSETS_BASE = " + JSON.stringify(base) + ";\n" +
+  "window.MANIFEST_URL = " + JSON.stringify(manifestUrl) + ";\n"
 );
 
 const forbidden = new Set([".glb", ".gltf", ".bin", ".hdr", ".exr", ".png", ".jpg", ".jpeg", ".webp"]);

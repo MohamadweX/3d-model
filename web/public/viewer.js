@@ -538,7 +538,7 @@
     window.addEventListener("hashchange", handleHash);
   }
 
-  fetch("manifest.json", { cache: "no-cache" })
+  fetch(window.MANIFEST_URL || "manifest.json", { cache: "no-cache" })
     .then((r) => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.json();

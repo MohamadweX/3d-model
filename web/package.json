@@ -6,6 +6,7 @@
   "description": "Static CC0 3D asset gallery. Models live on an external CDN, not in the build.",
   "scripts": {
     "sync": "node scripts/sync.mjs",
+    "fetch": "node scripts/fetch-assets.mjs",
     "build": "node scripts/build.mjs",
     "dev": "node scripts/dev.mjs",
     "upload:r2": "bash scripts/upload-r2.sh"

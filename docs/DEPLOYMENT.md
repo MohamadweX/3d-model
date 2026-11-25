@@ -49,6 +49,19 @@ repository root. Build command: `npm run build`; output directory: `dist`.
 `vercel.json` already sets immutable caching for JS/CSS and no-cache for
 `manifest.json`.
 
+## Automatic deployment
+
+In the Vercel dashboard, import `MohamadweX/3d-model` and connect it to the
+`master` branch. Set **Root Directory** to `web`, build command `npm run build`,
+output directory `dist`, and environment variable `ASSETS_BASE` (public CDN URL).
+Every push to `master` then deploys automatically without a GitHub Token needing
+the `workflow` scope.
+
+## End-user local copy
+
+Anyone who wants every model on their own machine runs `./setup.sh` in `web/`
+after setting `ASSETS_BASE`. See `docs/LOCAL_SETUP.md`.
+
 ## 4. Performance notes
 
 - The gallery renders at most 60 cards at a time and loads models on demand.

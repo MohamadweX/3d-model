@@ -50,6 +50,10 @@ if (!js.includes(oldFns)) {
   throw new Error("Could not find resolvePreview/resolveModel block in viewer.js");
 }
 js = js.replace(oldFns, newFns);
+js = js.replace(
+  'fetch("manifest.json", { cache: "no-cache" })',
+  'fetch(window.MANIFEST_URL || "manifest.json", { cache: "no-cache" })'
+);
 
 let html = fs.readFileSync(path.join(libViewer, "index.html"), "utf8");
 html = html.replace(

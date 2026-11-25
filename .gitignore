@@ -10,6 +10,7 @@ dist/
 # مكتبة الأصول الضخمة — تُرفع إلى تخزين خارجي (R2) ولا تُودع في Git
 3D_Asset_Library/
 viewer/*.gz
+web/public/manifest.local.json
 
 # منع أي نموذج/صورة كبيرة من الدخول إلى المستودع بالخطأ
 *.glb
