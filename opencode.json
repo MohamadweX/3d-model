@@ -1,0 +1,6 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    "Respond concisely in Arabic with ONLY new findings, code, or direct links. Never repeat previous steps, summaries, or background context."
+  ]
+}

@@ -1,0 +1,23 @@
+node_modules/
+dist/
+.vercel/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+
+# مكتبة الأصول الضخمة — تُرفع إلى تخزين خارجي (R2) ولا تُودع في Git
+3D_Asset_Library/
+viewer/*.gz
+
+# منع أي نموذج/صورة كبيرة من الدخول إلى المستودع بالخطأ
+*.glb
+*.gltf
+*.bin
+*.hdr
+*.exr
+*.png
+*.jpg
+*.jpeg
+*.webp

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>معرض مكتبة النماذج 3D</title>
+  <link rel="stylesheet" href="viewer.css">
+  <script type="module" src="vendor/model-viewer.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">3D</div>
+      <div>
+        <h1>معرض مكتبة النماذج</h1>
+        <p id="statsLine">جارٍ تحميل الفهرس…</p>
+      </div>
+    </div>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="ابحث بالاسم، المصدر، أو النوع…" autocomplete="off">
+    </div>
+    <div class="top-actions">
+      <button id="randomBtn" class="ghost" title="نموذج عشوائي">🎲 عشوائي</button>
+      <a class="ghost" href="../00_START_HERE/README_AR.md" target="_blank" rel="noopener">الدليل</a>
+      <a class="ghost" href="../00_START_HERE/CATALOG.csv" target="_blank" rel="noopener">الكتالوج</a>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="filters">
+      <h2>تصفية</h2>
+      <label>الفئة
+        <select id="category"></select>
+      </label>
+      <label>المجموعة
+        <select id="subcategory"></select>
+      </label>
+      <label>المصدر
+        <select id="source"></select>
+      </label>
+      <label>النمط
+        <select id="style"></select>
+      </label>
+      <label>الترتيب
+        <select id="sort">
+          <option value="category" selected>الفئة</option>
+          <option value="title">الاسم</option>
+          <option value="sizeDesc">الحجم: الأكبر</option>
+          <option value="sizeAsc">الحجم: الأصغر</option>
+          <option value="category">الفئة</option>
+        </select>
+      </label>
+      <label class="check"><input type="checkbox" id="animated"> متحرك / rigged فقط</label>
+      <label class="check"><input type="checkbox" id="ai"> مولّد بالذكاء الاصطناعي فقط</label>
+      <button id="resetBtn" class="ghost wide">إعادة ضبط الفلاتر</button>
+      <div class="filter-stats">
+        <strong id="resultCount">—</strong>
+        <span id="resultBytes"></span>
+      </div>
+      <p class="hint">اضغط على أي بطاقة لعرض النموذج. استخدم الفأرة للدوران والتحريك، وعجلة الفأرة للتقريب.</p>
+    </aside>
+
+    <section class="catalog-pane">
+      <div class="catalog-head">
+        <div>
+          <h2>النماذج</h2>
+          <p id="pageInfo">—</p>
+        </div>
+        <button id="loadMore" class="primary">عرض المزيد</button>
+      </div>
+      <div id="grid" class="grid" aria-live="polite"></div>
+      <div id="noResults" class="no-results hidden">لا توجد نتائج مطابقة.</div>
+    </section>
+
+    <section class="viewer-pane">
+      <div class="viewer-card">
+        <div class="viewer-head">
+          <div>
+            <h2 id="assetTitle">اختر نموذجًا</h2>
+            <p id="assetSub">سيظهر هنا بعد الاختيار</p>
+          </div>
+          <div id="assetBadges" class="badges"></div>
+        </div>
+
+        <div class="model-stage" id="stage">
+          <model-viewer
+            id="mv"
+            camera-controls
+            touch-action="pan-y"
+            shadow-intensity="1"
+            environment-image="neutral"
+            exposure="1"
+            autoplay
+            auto-rotate
+            interaction-prompt="none"
+            style="width:100%;height:100%;background:transparent">
+          </model-viewer>
+          <div id="emptyState" class="stage-message">
+            <div class="big-icon">◈</div>
+            <p>اختر نموذجًا من القائمة لعرضه والتحكم فيه</p>
+          </div>
+          <div id="loading" class="stage-message hidden">
+            <div class="spinner"></div>
+            <p id="loadingText">جارٍ تحميل النموذج…</p>
+          </div>
+          <div id="error" class="stage-message error hidden"></div>
+        </div>
+
+        <div class="controls">
+          <button id="resetCam" class="ghost">إعادة الكاميرا</button>
+          <button id="rotateBtn" class="ghost active">تدوير تلقائي</button>
+          <button id="wireBtn" class="ghost">Wireframe</button>
+          <button id="gridBtn" class="ghost">الشبكة</button>
+          <button id="fullBtn" class="ghost">ملء الشاشة</button>
+          <label class="slider">الإضاءة
+            <input id="exposure" type="range" min="0.2" max="2.2" step="0.1" value="1">
+          </label>
+          <label class="color">الخلفية
+            <input id="bg" type="color" value="#10151d">
+          </label>
+        </div>
+
+        <div id="animRow" class="anim-row hidden">
+          <label>الحركة
+            <select id="animSelect"></select>
+          </label>
+          <button id="playBtn" class="ghost">إيقاف</button>
+        </div>
+
+        <div id="meta" class="meta"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>كل الأصول CC0 — ملكية عامة.</span>
+    <span>Poly Haven · 3DAssets.dev · VibeAssets · Cinevva</span>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="viewer.js"></script>
+</body>
+</html>

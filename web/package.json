@@ -1,0 +1,16 @@
+{
+  "name": "realistic-3d-asset-gallery",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Static CC0 3D asset gallery. Models live on an external CDN, not in the build.",
+  "scripts": {
+    "sync": "node scripts/sync.mjs",
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/dev.mjs",
+    "upload:r2": "bash scripts/upload-r2.sh"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
